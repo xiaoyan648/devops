@@ -1,0 +1,6 @@
+# 先构建完成，copy可执行文件到镜像 size=75MB
+# syntax=docker/dockerfile:1
+FROM ubuntu:latest
+WORKDIR /opt/app
+COPY example ./
+CMD ["/opt/app/example"]

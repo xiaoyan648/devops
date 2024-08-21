@@ -1,0 +1,21 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: hello-world-flask
+spec:
+  interval: 15s # 这里的 interval 代表每 5 秒钟主动拉取一次仓库并把它作为制品存储。
+  ref:
+    branch: main
+  url: https://gitlab.com/xyzbit/devops.git # 将 URL 字段修改为你实际仓库的地址并使用 HTTPS 协议
+  secretRef:
+    name: spark-git-repo
+
+---
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: spark-git-repo
+stringData:
+  username: 1425895909@qq.com
+  password: Litao142589
