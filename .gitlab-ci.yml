@@ -1,0 +1,22 @@
+stages:
+  - build
+
+image: docker:20.10.16
+
+variables:
+  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKERHUB_USERNAME: "lyzhang1999"
+
+services:
+  - docker:20.10.16-dind
+
+before_script:
+  - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
+
+build_and_push:
+  stage: build
+  script:
+    - docker build -t $DOCKERHUB_USERNAME/frontend:$CI_COMMIT_SHORT_SHA ./frontend
+    - docker push $DOCKERHUB_USERNAME/frontend:$CI_COMMIT_SHORT_SHA
+    - docker build -t $DOCKERHUB_USERNAME/backend:$CI_COMMIT_SHORT_SHA ./backend
+    - docker push $DOCKERHUB_USERNAME/backend:$CI_COMMIT_SHORT_SHA
