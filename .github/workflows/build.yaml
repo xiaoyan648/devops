@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - "feature/ci"
-
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+      # - 'v*.*.*' # 触发条件，当推送的tag符合vX.Y.Z的格式时触发
 env:
   DOCKERHUB_USERNAME: 1425895909
 
