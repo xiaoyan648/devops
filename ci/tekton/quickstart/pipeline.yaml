@@ -39,7 +39,7 @@ spec:
         - name: url
           value: $(params.git_url)
         - name: revision
-          value: $(params.refspec)
+          value: $(params.subdirectory)
         - name: refspec
           value: $(params.refspec) 
     - name: build-and-push-frontend
